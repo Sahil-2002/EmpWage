@@ -1,7 +1,10 @@
 import java.util.Random;
 //Check Employee is or present or Absent
 public class Main {
+
     public static void main(String[] args) {
+        System.out.println("welcome to Employee wage computation program");
+
         Random r = new Random();
         int present = 0;
         int absent = 0;
@@ -54,6 +57,9 @@ public class Main {
                 case 9:
                     System.out.println("you worked "+hour+" hours so completed today's working hour and more  so employee wage is "+hour*perhourwage);
             }
+if(present>=20){
+    System.out.println("monthly wage is "+present*hour*perhourwage);
+}
 
 
     }
