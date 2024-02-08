@@ -60,6 +60,11 @@ public class Main {
 if(present>=20){
     System.out.println("monthly wage is "+present*hour*perhourwage);
 }
+int total_hours = present*hour;
+if(total_hours==100&& present>=20){
+    int wage = hour*present*perhourwage;
+    System.out.println("wage after 100 working hour completion and 20 days is "+wage);
+}
 
 
     }
