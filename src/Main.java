@@ -20,6 +20,8 @@ public class Main {
             }
 
         }
+        System.out.println("total present count is " + present);
+        System.out.println("total absent count is " + absent);
         int hour = r.nextInt(9);
         if (hour >= 8) {
             System.out.println("wage of day is " + perhourwage * hour);
@@ -28,8 +30,7 @@ public class Main {
 
         }
 
-        System.out.println("total present count is " + present);
-        System.out.println("total absent count is " + absent);
+
 
 
         // parttime employee wage
@@ -37,8 +38,26 @@ public class Main {
 
             System.out.println("part time wage is "+parttime_hour*perhourwage);
 
+            switch(hour){
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+
+                    System.out.println("you worked  "+hour+" hours today so employee wage is "+hour*perhourwage);
+                    break;
+                case 8:
+                case 9:
+                    System.out.println("you worked "+hour+" hours so completed today's working hour and more  so employee wage is "+hour*perhourwage);
+            }
+
 
     }
+
 
 
 
