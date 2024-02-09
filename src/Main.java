@@ -1,83 +1,45 @@
 import java.util.Random;
 //Check Employee is or present or Absent
 public class Main {
+public static int rateperhour =20;
+public  int workingdays;
+public static int maxhours =100;
+int parttime =0, fulltime =0, hoursum=0;
+public Main(int workingdays){
+    this.workingdays=workingdays;
+    for(int i=0; i<workingdays; i++) {
+        Random random = new Random();
 
-    public static void main(String[] args) {
-        System.out.println("welcome to Employee wage computation program");
-
-        Random r = new Random();
-        int present = 0;
-        int absent = 0;
-        int perhourwage = 20;
-
-
-        for (int i = 1; i <= 30; i++) {
-            boolean attendance = r.nextBoolean();
-            if (attendance) {
-                present++;
-                System.out.println("employee is present");
-            } else {
-                absent++;
-
-                System.out.println("employee is absent ");
-            }
+        int hourdaily = random.nextInt(10);
+        if (hourdaily <= 4) {
+            parttime++;
+            System.out.println("its part time wage of the day " + hourdaily * rateperhour);
+        } else if (hourdaily > 4) {
+            System.out.println("Its full time wage of the day " + hourdaily * rateperhour);
+            fulltime++;
 
         }
-        System.out.println("total present count is " + present);
-        System.out.println("total absent count is " + absent);
-        int hour = r.nextInt(9);
-        if (hour >= 8) {
-            System.out.println("wage of day is " + perhourwage * hour);
-        } else if (hour < 8) {
-            System.out.println("wage of day is " + perhourwage * hour);
-
-        }
-
-
-
-
-        // parttime employee wage
-        int parttime_hour = 8;
-
-            System.out.println("part time wage is "+parttime_hour*perhourwage);
-
-            switch(hour){
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-
-                    System.out.println("you worked  "+hour+" hours today so employee wage is "+hour*perhourwage);
-                    break;
-                case 8:
-                case 9:
-                    System.out.println("you worked "+hour+" hours so completed today's working hour and more  so employee wage is "+hour*perhourwage);
-            }
-if(present>=20){
-    System.out.println("monthly wage is "+present*hour*perhourwage);
-}
-int total_hours = present*hour;
-if(total_hours==100&& present>=20){
-    int wage = hour*present*perhourwage;
-    System.out.println("wage after 100 working hour completion and 20 days is "+wage);
-}
+        hoursum=hoursum+hourdaily;
+    }
+    System.out.println("total part time count is "+parttime + " total full time count is "+fulltime);
+    System.out.println("total hour count you worked for month with working days "+workingdays + " is "+hoursum);
 
 
     }
 
+    public static void main(String[] args) {
 
+        Main sc = new Main(20);
 
-
-
-
-
-
+    }
 
 }
+
+
+
+
+
+
 
 
 
