@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 abstract class EmployeeWageCalculator {
@@ -13,7 +15,6 @@ abstract class EmployeeWageCalculator {
     }
 
     abstract void compute();
-
 
     public int getRatePerHour() {
         return ratePerHour;
@@ -67,11 +68,33 @@ class WageCalculator extends EmployeeWageCalculator {
     }
 }
 
+class CompanyWageManager {
+    private List<EmployeeWageCalculator> companies;
+
+    public CompanyWageManager() {
+        this.companies = new ArrayList<>();
+    }
+
+    public void addCompany(EmployeeWageCalculator company) {
+        companies.add(company);
+    }
+
+    public void calculateWagesForAllCompanies() {
+        for (EmployeeWageCalculator company : companies) {
+            company.compute();
+        }
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
-        WageCalculator wageCalculator = new WageCalculator("JIO", 20, 100);
-        wageCalculator.compute();
-        WageCalculator sc2 = new WageCalculator("VODAFONE",25,60);
-        sc2.compute();
+        CompanyWageManager wageManager = new CompanyWageManager();
+
+        // Add companies
+        wageManager.addCompany(new WageCalculator("JIO", 20, 100));
+        wageManager.addCompany(new WageCalculator("VODAFONE", 25, 60));
+
+        // Calculate wages for all companies
+        wageManager.calculateWagesForAllCompanies();
     }
 }
