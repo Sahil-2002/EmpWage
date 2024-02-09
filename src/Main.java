@@ -1,12 +1,14 @@
 import java.util.Random;
 //Check Employee is or present or Absent
 public class Main {
-public static int rateperhour =20;
+public  int rateperhour ;
 public  int workingdays;
 public static int maxhours =100;
 int parttime =0, fulltime =0, hoursum=0;
-public Main(int workingdays){
+public Main(String comapanyname , int workingdays, int rateperhour){
     this.workingdays=workingdays;
+    this.rateperhour=rateperhour;
+    System.out.println("for company "+comapanyname+" we are calculating its employee wage ");
     for(int i=0; i<workingdays; i++) {
         Random random = new Random();
 
@@ -23,13 +25,15 @@ public Main(int workingdays){
     }
     System.out.println("total part time count is "+parttime + " total full time count is "+fulltime);
     System.out.println("total hour count you worked for month with working days "+workingdays + " is "+hoursum);
-
+    System.out.println("monthly wage of employee is "+hoursum*rateperhour);
+    System.out.println("\n");
 
     }
 
     public static void main(String[] args) {
 
-        Main sc = new Main(20);
+       Main sc = new Main("jio", 20, 100);
+       Main sc1 = new Main("vodafone",25,60);
 
     }
 
