@@ -3,11 +3,15 @@ import java.util.Random;
 public class Main {
 public  int rateperhour ;
 public  int workingdays;
-public static int maxhours =100;
+public String comapanyname;
 int parttime =0, fulltime =0, hoursum=0;
 public Main(String comapanyname , int workingdays, int rateperhour){
+    this.comapanyname=comapanyname;
     this.workingdays=workingdays;
     this.rateperhour=rateperhour;
+}
+public void compute (){
+
     System.out.println("for company "+comapanyname+" we are calculating its employee wage ");
     for(int i=0; i<workingdays; i++) {
         Random random = new Random();
@@ -33,8 +37,10 @@ public Main(String comapanyname , int workingdays, int rateperhour){
     public static void main(String[] args) {
 
        Main sc = new Main("jio", 20, 100);
-       Main sc1 = new Main("vodafone",25,60);
+       sc.compute();
 
+       Main sc1 = new Main("vodafone",25,60);
+       sc1.compute();
     }
 
 }
