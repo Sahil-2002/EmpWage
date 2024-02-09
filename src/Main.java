@@ -1,57 +1,77 @@
 import java.util.Random;
 
-public class Main {
-public  int rateperhour ;
-public  int workingdays;
-public String comapanyname;
-int parttime =0, fulltime =0, hoursum=0;
-public Main(String comapanyname , int workingdays, int rateperhour){
-    this.comapanyname=comapanyname;
-    this.workingdays=workingdays;
-    this.rateperhour=rateperhour;
-}
-public void compute (){
+abstract class EmployeeWageCalculator {
+    private int ratePerHour;
+    private int workingDays;
+    private String companyName;
+    public int partTime = 0, fullTime = 0, hourSum = 0;
 
-    System.out.println("for company "+comapanyname+" we are calculating its employee wage ");
-    for(int i=0; i<workingdays; i++) {
+    public EmployeeWageCalculator(String companyName, int workingDays, int ratePerHour) {
+        this.companyName = companyName;
+        this.workingDays = workingDays;
+        this.ratePerHour = ratePerHour;
+    }
+
+    abstract void compute();
+
+
+    public int getRatePerHour() {
+        return ratePerHour;
+    }
+
+    public void setRatePerHour(int ratePerHour) {
+        this.ratePerHour = ratePerHour;
+    }
+
+    public int getWorkingDays() {
+        return workingDays;
+    }
+
+    public void setWorkingDays(int workingDays) {
+        this.workingDays = workingDays;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+}
+
+class WageCalculator extends EmployeeWageCalculator {
+    public WageCalculator(String companyName, int workingDays, int ratePerHour) {
+        super(companyName, workingDays, ratePerHour);
+    }
+
+    public void compute() {
+        System.out.println("For company " + getCompanyName() + ", we are calculating its employee wage:");
         Random random = new Random();
 
-        int hourdaily = random.nextInt(10);
-        if (hourdaily <= 4) {
-            parttime++;
-            System.out.println("its part time wage of the day " + hourdaily * rateperhour);
-        } else if (hourdaily > 4) {
-            System.out.println("Its full time wage of the day " + hourdaily * rateperhour);
-            fulltime++;
-
+        for (int i = 0; i < getWorkingDays(); i++) {
+            int hourDaily = random.nextInt(10);
+            if (hourDaily <= 4) {
+                partTime++;
+                System.out.println("It's part-time wage of the day: " + hourDaily * getRatePerHour());
+            } else {
+                System.out.println("It's full-time wage of the day: " + hourDaily * getRatePerHour());
+                fullTime++;
+            }
+            hourSum += hourDaily;
         }
-        hoursum=hoursum+hourdaily;
+
+        System.out.println("Total part-time count is " + partTime + ", total full-time count is " + fullTime);
+        System.out.println("Total hour count worked for the month with working days " + getWorkingDays() + " is " + hourSum);
+        System.out.println("Monthly wage of employee is " + hourSum * getRatePerHour() + "\n");
     }
-    System.out.println("total part time count is "+parttime + " total full time count is "+fulltime);
-    System.out.println("total hour count you worked for month with working days "+workingdays + " is "+hoursum);
-    System.out.println("monthly wage of employee is "+hoursum*rateperhour);
-    System.out.println("\n");
-
-    }
-
-    public static void main(String[] args) {
-
-       Main sc = new Main("jio", 20, 100);
-       sc.compute();
-
-       Main sc1 = new Main("vodafone",25,60);
-       sc1.compute();
-    }
-
 }
 
-
-
-
-
-
-
-
-
-
-
+public class Main {
+    public static void main(String[] args) {
+        WageCalculator wageCalculator = new WageCalculator("JIO", 20, 100);
+        wageCalculator.compute();
+        WageCalculator sc2 = new WageCalculator("VODAFONE",25,60);
+        sc2.compute();
+    }
+}
