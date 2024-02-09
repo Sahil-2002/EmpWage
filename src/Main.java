@@ -1,5 +1,5 @@
 import java.util.Random;
-//Check Employee is or present or Absent
+
 public class Main {
 public  int rateperhour ;
 public  int workingdays;
